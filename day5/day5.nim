@@ -1,5 +1,8 @@
 import algorithm
+import times
 var line: TaintedString
+
+let time = cpuTime()
 
 proc yeetHalf(sequence: var seq[int], upperHalf: bool) =
     if not upperHalf:
@@ -35,9 +38,12 @@ while (readLine(stdin, line)):
     if seatid > highest_seat_id: highest_seat_id = seatid
     all_seat_ids.add(seatid)
 
-echo "Highest ID: ", highest_seat_id
-
 sort all_seat_ids
 
 for i in 0..(all_seat_ids.len - 2):
-    if (all_seat_ids[i + 1] - all_seat_ids[i] != 1): echo "Your Seat ID: ", all_seat_ids[i] + 1
+    if (all_seat_ids[i + 1] - all_seat_ids[i] != 1):
+        let timetook = cpuTime() - time
+        echo "Highest ID: ", highest_seat_id
+        echo "Your Seat ID: ", all_seat_ids[i] + 1
+        echo "Finished in: ", timetook, "sec"
+        quit 0

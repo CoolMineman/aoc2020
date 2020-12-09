@@ -1,5 +1,7 @@
 import strutils
 import tables
+import times
+let time = cpuTime()
 
 type
     Contained = object
@@ -34,4 +36,7 @@ proc getCanContain(current: string): int =
             result += entry.quantity
             result += entry.quantity * getCanContain(entry.`type`)
 
-echo getCanContain("shiny gold bag")
+let timetook = cpuTime() - time
+let answer = getCanContain("shiny gold bag")
+
+echo "Answer: ", answer, " Completed In: ", timetook
